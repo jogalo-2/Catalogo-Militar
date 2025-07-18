@@ -1,0 +1,104 @@
+/* Estilo básico e modo claro */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+  color: #222;
+  transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Layout em grid para categorias e itens */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Quadrados cinza 1:1 */
+.square {
+  background-color: #aaa;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 6px;
+  user-select: none;
+  font-weight: bold;
+  color: #444;
+  text-align: center;
+  padding: 10px;
+}
+
+.square:hover {
+  background-color: #888;
+}
+
+/* Esconder elementos */
+.hidden {
+  display: none;
+}
+
+#btn-back {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* Rodapé com links */
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+}
+
+footer a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #0077b5;
+}
+
+/* Modo escuro */
+body.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
+
+body.dark-mode .square {
+  background-color: #555;
+  color: #ddd;
+}
+
+body.dark-mode .square:hover {
+  background-color: #777;
+}
+
+body.dark-mode footer a {
+  color: #eee;
+}
+
+body.dark-mode footer a:hover {
+  color: #0a84ff;
+}
