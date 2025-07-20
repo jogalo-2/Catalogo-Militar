@@ -1,56 +1,72 @@
-// Dados das categorias e itens
-const catalog = {
-  "Camisas": ["Camisa Básica", "Camisa Premium"],
-  "Coturno": ["Preto", "Marrom", "Camuflado"],
-  "Soutache": ["", "", "", "", "", "", "", ""], // 8 placeholders vazios
-  "Facão": ["Facão Cabo de Marfim", "Facão Cabo Simples"],
-  "Gorros": ["Gorro de Formatura", "Gorro de Selva", "Gorro PE"]
+const categorias = {
+  "Camisas": ["camisa-basica", "camisa-premium"],
+  "Cuturno": ["cuturno-preto", "cuturno-marrom", "cuturno-camuflado"],
+  "Soutache": [
+    "soutache-1", "soutache-2", "soutache-3", "soutache-4",
+    "soutache-5", "soutache-6", "soutache-7", "soutache-8"
+  ],
+  "Facão": ["facao-cabo-marfim", "facao-cabo-simples"],
+  "Gorros": ["gorro-formatura", "gorro-selva", "gorro-pe"]
 };
 
-const categoriesDiv = document.getElementById("categories");
-const itemsDiv = document.getElementById("items");
-const btnBack = document.getElementById("btn-back");
-const toggleModeBtn = document.getElementById("toggle-mode");
+const nomesExibicao = {
+  "camisa-basica": "Camisa Básica",
+  "camisa-premium": "Camisa Premium",
+  "cuturno-preto": "Cuturno Preto",
+  "cuturno-marrom": "Cuturno Marrom",
+  "cuturno-camuflado": "Cuturno Camuflado",
+  "facao-cabo-marfim": "Facão Cabo de Marfim",
+  "facao-cabo-simples": "Facão Cabo Simples",
+  "gorro-formatura": "Gorro de Formatura",
+  "gorro-selva": "Gorro de Selva",
+  "gorro-pe": "Gorro PE",
+  "soutache-1": "Soutache 1",
+  "soutache-2": "Soutache 2",
+  "soutache-3": "Soutache 3",
+  "soutache-4": "Soutache 4",
+  "soutache-5": "Soutache 5",
+  "soutache-6": "Soutache 6",
+  "soutache-7": "Soutache 7",
+  "soutache-8": "Soutache 8"
+};
 
-// Mostra categorias na tela inicial
+const catalogo = document.getElementById("catalogo");
+
 function mostrarCategorias() {
-  categoriesDiv.innerHTML = "";
-  itemsDiv.classList.add("hidden");
-  categoriesDiv.classList.remove("hidden");
-  btnBack.classList.add("hidden");
-
-  for (const categoria in catalog) {
+  catalogo.innerHTML = "";
+  for (const categoria in categorias) {
     const div = document.createElement("div");
-    div.className = "square";
-    div.textContent = categoria;
+    div.className = "categoria";
+    div.innerHTML = `
+      <img src="img/${categorias[categoria][0]}.jpeg" alt="${categoria}" />
+      <p>${categoria}</p>
+    `;
     div.onclick = () => mostrarItens(categoria);
-    categoriesDiv.appendChild(div);
+    catalogo.appendChild(div);
   }
 }
 
-// Mostra itens da categoria selecionada
 function mostrarItens(categoria) {
-  itemsDiv.innerHTML = "";
-  categoriesDiv.classList.add("hidden");
-  itemsDiv.classList.remove("hidden");
-  btnBack.classList.remove("hidden");
-
-  const itens = catalog[categoria];
-  itens.forEach(item => {
+  catalogo.innerHTML = "";
+  categorias[categoria].forEach(item => {
     const div = document.createElement("div");
-    div.className = "square";
-    div.textContent = item || "Placeholder";
-    itemsDiv.appendChild(div);
+    div.className = "item";
+    div.innerHTML = `
+      <img src="img/${item}.jpg" alt="${nomesExibicao[item] || item}" />
+      <p>${nomesExibicao[item] || item}</p>
+    `;
+    catalogo.appendChild(div);
   });
+
+  const botaoVoltar = document.createElement("button");
+  botaoVoltar.textContent = "Voltar";
+  botaoVoltar.onclick = mostrarCategorias;
+  botaoVoltar.style.margin = "1rem auto";
+  catalogo.appendChild(botaoVoltar);
 }
 
-// Volta para categorias
-btnBack.onclick = () => mostrarCategorias();
-
-// Alterna modo claro/escuro
-toggleModeBtn.onclick = () => {
+document.getElementById("toggleTheme").onclick = () => {
   document.body.classList.toggle("dark-mode");
 };
 
-// Inicia mostrando categorias
 mostrarCategorias();
