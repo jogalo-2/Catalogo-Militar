@@ -9,7 +9,7 @@ const categorias = {
   "Gorros": ["gorro-formatura", "gorro-selva", "gorro-pe"]
 };
 
-const nomesExibicao = {
+const nomesExibicao = { //nomes de exibição
   "camisa-basica": "Camisa Básica",
   "camisa-premium": "Camisa Premium",
   "cuturno-preto": "Cuturno Preto",
@@ -32,7 +32,7 @@ const nomesExibicao = {
 
 const catalogo = document.getElementById("catalogo");
 
-function mostrarCategorias() {
+function mostrarCategorias() {      //função das categorias
   catalogo.innerHTML = "";
   for (const categoria in categorias) {
     const div = document.createElement("div");
@@ -46,7 +46,7 @@ function mostrarCategorias() {
   }
 }
 
-function mostrarItens(categoria) {
+function mostrarItens(categoria) {     //função itens obs adicionar função para adicionar/retirar itens
   catalogo.innerHTML = "";
   categorias[categoria].forEach(item => {
     const div = document.createElement("div");
